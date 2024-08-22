@@ -1,5 +1,5 @@
-import { CompositeNavigationProp } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import { CompositeNavigationProp, useFocusEffect } from "@react-navigation/native";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -25,9 +25,11 @@ export default function DaftarJenisBarangScreen({
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
 
   const fetchData = async () => {
     setRefreshing(true);
@@ -88,15 +90,12 @@ export default function DaftarJenisBarangScreen({
         }
         renderItem={({ item }) => (
           <View style={styles.item}>
-            <View>
-              <Text style={styles.itemText}>
-                <Text style={{ fontWeight: "bold" }}>Jenis Barang{"\n"}</Text>
-                {item.JenisBarang}
-              </Text>
-            </View>
-            <View>
+            <Text style={styles.itemText}>
+              {item.JenisBarang}
+            </Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <TouchableOpacity
-                style={{ marginBottom: 10 }}
+                style={{ marginRight: 10 }}
                 onPress={() => handleEditBarang(item?.JenisBarangID ?? 0)}
               >
                 <Feather name="edit" size={24} color={colors.primary} />
@@ -147,10 +146,8 @@ const styles = StyleSheet.create({
   },
   item: {
     width: "100%",
-    marginBottom: 10,
+    marginBottom: 15,
     padding: 10,
-    // borderWidth: 1,
-    // borderColor: "#ccc",
     elevation: 2,
     borderRadius: 5,
     backgroundColor: "#fff",

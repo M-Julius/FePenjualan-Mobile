@@ -1,5 +1,5 @@
-import { CompositeNavigationProp } from "@react-navigation/native";
-import React, { useEffect, useRef, useState } from "react";
+import { CompositeNavigationProp, useFocusEffect } from "@react-navigation/native";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -29,9 +29,11 @@ export default function DaftarBarangScreen({
   const [refreshing, setRefreshing] = useState(false);
   const [sortBy, setSortBy] = useState("nama");
 
-  useEffect(() => {
-    fetchData();
-  }, [sortBy]);
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [sortBy])
+  );
 
   const fetchData = async () => {
     setRefreshing(true);

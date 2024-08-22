@@ -1,5 +1,5 @@
 # Welcome to Penjualan App!
-Penjualan is frontend for creating Barang, Jenis Barang and see report
+Penjualan is frontend for creating Barang, Jenis Barang and see report, and Backend in here [BePenjualan-API](https://github.com/M-Julius/BePenjualan-API)
 
 ## Preview
 [<img src="screenshot/main.png" width="250"/>](main.png)
@@ -16,14 +16,16 @@ Penjualan is frontend for creating Barang, Jenis Barang and see report
 - React Navigation
 - TypeScript
 
-### Instalation
+### Instalation 
 ```$ git clone https://github.com/M-Julius/FePenjualan-Mobile.git```
 
 ```$ cd FePenjualan-Mobile```
 
 ```$ yarn install```
 
-```$ npx expo start```
+you must setup .env file for connect to API, add env ```EXPO_PUBLIC_HOST``` with your backend host api, see ```.env.example``` file for example.
+
+```$ yarn android```
 
 ### Feature List:
 - [x] Halaman Utama
